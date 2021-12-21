@@ -1,0 +1,16 @@
+{
+  "name": "blogtion",
+  "version": "1.0.0",
+  "description": "Integration between notion and static blog site generators",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Ravi Sawlani",
+  "license": "ISC",
+  "dependencies": {
+    "@notionhq/client": "^0.4.11",
+    "notion-to-md": "^2.0.0"
+  }
+}
