@@ -6,7 +6,8 @@ as soon as we mark the blog `done` in Notion it appears on our blog website.
 
 ## 🔖 Notion setup
 The Notion setup can look like below where there are some blogs which are marked as `In progress` and some as `done`.
-<br/>
+<br>
+<br>
 ![Notion-setup](.github/images/notion-setup.jpeg).
 You need also setup [Notion integration](https://www.notion.so/my-integrations) before taking advantage of this tool. 
 
@@ -24,7 +25,7 @@ should show up on the website using one of the static site generator websites.
 | NOTION_SECRET_KEY| To authorize your Notion account. [check here](https://developers.notion.com/docs/getting-started)  |
 | GITHUB_REPO_NAME | Repo to push the content to. Repository name, for example `blogtion` |
 | GITHUB_USER_NAME | Username of the github account.For example `gravityvi` |
-| GITHUB_FILE_PATH | Relative path to push the files to github. static site generator would use content from a file, for example `content/posts` |
+| GITHUB_FILE_PATH | Relative path to push the files to github. static site generator would use content from a file, for example `content/posts/` |
 | NOTION_DATABASE_ID | Notion page to fetch the blog data. [check here](https://developers.notion.com/docs/getting-started#step-2-share-a-database-with-your-integration) |
 | GITHUB_BRANCH_NAME | Github branch to use while pushing data. For example `main` |
 
@@ -32,7 +33,7 @@ This completes your setup.
 
 ## 🚀 Deployment
  The final step is to deploy the tool to run as per your preferences. I am using [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler#installing-the-add-on) that runs on code on specific duration and push the updates to github.<br>
- ** Note : Updates are only pushed if there are some changes  **
+ **Note : Updates are only pushed if there are some changes**
 
  ## 👾 Fun Facts
 The whole application has been coded and deployed using a computer which is not a computer.
