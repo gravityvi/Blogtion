@@ -17,6 +17,8 @@ async function uploadToRepo(files, filePaths) {
   const newCommit = await createNewCommit(
     commitMessage, newTree.sha, currentCommit.commitSha
   )
+    if(newCommit.tree.sha === currentCommit.treeSha)
+      throw new Error('No changes made');
   await setBranchToCommit(newCommit.sha)
 }
 
@@ -32,7 +34,6 @@ async function getCurrentCommit() {
   repo,
   commit_sha: commitSha
 });
-  
 return {
   commitSha,
   treeSha: commitData.tree.sha
@@ -62,6 +63,7 @@ async function createNewTree(blobs, paths, parentTreeSha) {
     tree,
     base_tree: parentTreeSha
   });
+  console.log("tree data",data);
   return data;
 }
 

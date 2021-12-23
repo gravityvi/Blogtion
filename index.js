@@ -1,32 +1,50 @@
 const {md,notion} = require('./config');
 const {uploadToRepo} = require('./github');
 const notionDatabaseId = process.env['NOTION_DATABASE_ID'];
+const githubPath = process.env['GITHUB_FILE_PATH'];
 
 
-async function convertToMd(pageIds) {
-  const mdBlocks = await Promise.all(pageIds.map(pageId => md.pageToMarkdown(pageId)));
-  const mdStrings = mdBlocks.map(mdBlock => md.toMarkdownString(mdBlock));
-  return mdStrings;
+async function convertToMd(pageObjects) {
+  const mdBlocks = await Promise.all(pageObjects.map(({id}) => md.pageToMarkdown(id)));
+  const pages = mdBlocks.map((mdBlock,index) => {
+    return {
+      name: pageObjects[index].name,
+      content: md.toMarkdownString(mdBlock)
+    }
+  });
+  return pages;
 }
 
 async function getPublishedPages() {
-  const result = (await notion.databases.query({
+  const {results} = await notion.databases.query({
     database_id: notionDatabaseId,
     filter: {
-      or: [
+      and: [
         {
           property: 'status',
           select: {
             equals: 'done'
           }
+        },
+        {
+          property: 'title',
+          text:{
+            is_not_empty:true
+          }
         }
       ]
     }
-  })).results;
+  });
 
-  const pageIds = result.map(page => page.id);
+  const pageObjects = results.map((page) => {
+    return {
+      id: page.id,
+      name: page.properties['Name'].title[0].plain_text
+    }
+  });
+   
 
-  return pageIds;
+  return pageObjects;
 
 }
 
@@ -36,7 +54,8 @@ getPublishedPages()
   .then(pageIds =>
   convertToMd(pageIds))
   .then(data=>{
-    paths = [];
-    data.forEach(d=>paths.push('james-2.md'));
-    return uploadToRepo(data,paths);
-  }).catch(err=>console.log(err));
+    console.log(data);
+    const paths = [];
+    data.forEach(d=>paths.push(`${githubPath}${d.name}.md`));
+    return uploadToRepo(data.map(d=>d.content),paths);
+  }).catch(err=>console.log("[ERROR] ",err));

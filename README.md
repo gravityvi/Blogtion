@@ -4,6 +4,26 @@ Well the propasal is very simple to generate .md files which would then appear o
 Notion is a great tool to manage your tasks and is also more intuitive then writing a .md file. As transfering the final draft to github became a task I came up with this integration where
 as soon as we mark the blog `done` in Notion it appears on our blog website.
 
-## Notion setup
+## 🔖 Notion setup
 The Notion setup can look like below where there are some blogs which are marked as `In progress` and some as `done`.
-![Notion-setup](.github/images/notion-setup)
+<br/>
+![Notion-setup](.github/images/notion-setup.jpeg).
+You need also setup [Notion integration](https://www.notion.so/my-integrations) before taking advantage of this tool. 
+
+## 👨‍💻 Github Setup
+We can setup a github repository using github actions using any static site generator frameworks like [Hugo](https://gohugo.io/hosting-and-deployment/hosting-on-github/).
+The github repository should be setup in a format, when a new file is created a blog post 
+should show up on the website using one of the static site generator websites.
+
+## ✨ Bringing best of both worlds (Integration)
+ We need to setup some environment variable inorder to make this integration work.
+ 
+| environment | usage  |
+| :-------:   | :----: |
+| GITHUB_ACCESS_TOKEN     | To access your github account. [check here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) |
+| NOTION_SECRET_KEY| To authorize your Notion account. [check here](https://developers.notion.com/docs/getting-started)  |
+| GITHUB_REPO_NAME | Repo to push the content to. Repository name, for example `blogtion` |
+| GITHUB_USER_NAME | Username of the github account.For example `gravityvi` |
+| GITHUB_FILE_PATH | Relative path to push the files to github. static site generator would use content from a file, for example `content/posts` |
+| NOTION_DATABASE_ID | Notion page to fetch the blog data. [check here](https://developers.notion.com/docs/getting-started#step-2-share-a-database-with-your-integration) |
+| GITHUB_BRANCH_NAME | Github branch to use while pushing data. For example `main` |
