@@ -13,7 +13,7 @@ async function uploadToRepo(files, filePaths) {
     filePaths,
     currentCommit.treeSha,
   );
-  const commitMessage = `My commit message`
+  const commitMessage = `added posts`
   const newCommit = await createNewCommit(
     commitMessage, newTree.sha, currentCommit.commitSha
   )

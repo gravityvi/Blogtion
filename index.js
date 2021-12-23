@@ -9,7 +9,7 @@ async function convertToMd(pageObjects) {
   const pages = mdBlocks.map((mdBlock,index) => {
     return {
       name: pageObjects[index].name,
-      content: md.toMarkdownString(mdBlock)
+      content: `---\n title: ${pageObjects[index].name}\n date: ${new Date().toLocaleTimeString()}\n---\n\n `+md.toMarkdownString(mdBlock)
     }
   });
   return pages;
