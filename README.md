@@ -35,8 +35,11 @@ This completes your setup.
  The final step is to deploy the tool to run as per your preferences. I am using [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler#installing-the-add-on) that runs on code on specific duration and push the updates to github.<br>
  **Note : Updates are only pushed if there are some changes**
 
- ## 👾 Fun Facts
+ ## 👾 Fun Facts (Demo)
 The whole application has been coded and deployed using a computer which is not a computer.
 Special thanks to [replit.com](replict.com) ✨ for making this possible.
+<br>
+<br>
+[![Demo](http://img.youtube.com/vi/p6LW6R7Sf7w/0.jpg)](http://www.youtube.com/watch?v=p6LW6R7Sf7w "Blogtion")
 
-![Setup](.github/images/setup.jpeg).
+
